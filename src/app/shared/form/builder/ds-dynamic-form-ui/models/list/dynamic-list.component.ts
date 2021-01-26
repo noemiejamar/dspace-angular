@@ -15,15 +15,15 @@ import { FormBuilderService } from '../../../form-builder.service';
 import { DynamicListRadioGroupModel } from './dynamic-list-radio-group.model';
 import { VocabularyService } from '../../../../../../core/submission/vocabularies/vocabulary.service';
 import { getFirstSucceededRemoteDataPayload } from '../../../../../../core/shared/operators';
-import { PaginatedList } from '../../../../../../core/data/paginated-list';
+import { PaginatedList } from '../../../../../../core/data/paginated-list.model';
 import { VocabularyEntry } from '../../../../../../core/submission/vocabularies/models/vocabulary-entry.model';
 import { PageInfo } from '../../../../../../core/shared/page-info.model';
 
 export interface ListItem {
-  id: string,
-  label: string,
-  value: boolean,
-  index: number
+  id: string;
+  label: string;
+  value: boolean;
+  index: number;
 }
 
 /**
@@ -35,7 +35,7 @@ export interface ListItem {
   templateUrl: './dynamic-list.component.html'
 })
 export class DsDynamicListComponent extends DynamicFormControlComponent implements OnInit {
-  @Input() bindId = true;
+
   @Input() group: FormGroup;
   @Input() model: any;
 
@@ -99,7 +99,7 @@ export class DsDynamicListComponent extends DynamicFormControlComponent implemen
         this.model.valueUpdates.next(newValue);
       }
     } else {
-      (this.model as DynamicListRadioGroupModel).valueUpdates.next(this.optionsList[target.value]);
+      (this.model as DynamicListRadioGroupModel).value = this.optionsList[target.value];
     }
     this.change.emit(event);
   }

@@ -3,7 +3,7 @@ import { Observable, of as observableOf } from 'rxjs';
 
 export class AuthServiceMock {
   public checksAuthenticationToken() {
-    return
+    return;
   }
   public buildAuthHeader() {
     return 'auth-header';
@@ -11,5 +11,12 @@ export class AuthServiceMock {
 
   public getShortlivedToken(): Observable<string> {
     return observableOf('token');
+  }
+
+  public isAuthenticated(): Observable<boolean> {
+    return observableOf(true);
+  }
+
+  public setRedirectUrl(url: string) {
   }
 }
